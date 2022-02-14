@@ -1,3 +1,18 @@
+package controller;
+
+import domain.Rebelde;
+import enums.CamposEnum;
+import interfaces.Ordenacao;
+import lombok.Cleanup;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class InteligenciaCentral {
     @Getter
     @Setter
@@ -8,13 +23,6 @@ public class InteligenciaCentral {
             this.rebeldes.add(rebelde);
         }
     }
-
-    /*public static void solicitarIngresso(Rebelde rebelde) {
-        if(!buscarRebelde(arrayRebeldes, rebelde))
-            Utils.add(arrayRebeldes, rebelde);
-        else
-            System.out.println("Esse rebelde já está na lista.");
-    }*/
 
     public void imprimirAprovados(){
         try {
@@ -54,5 +62,10 @@ public class InteligenciaCentral {
         Rebelde[] rebelde = Arrays.copyOf(arrayRebeldes, 12);
 
         return rebelde;
+    }
+
+    public void ordenarRebeldesAprovados(Ordenacao ordenacao, FieldsEnum fieldsEnum){
+        List<Rebelde> rebeldeListOrdenada = ordenacao.sortBy(this.getRebeldesAprovados(), fieldsEnum);
+        this.setRebeldesAprovados(rebeldeListOrdenada);
     }
 }
