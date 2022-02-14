@@ -1,3 +1,5 @@
+package enums;
+
 public enum RacasEnum {
     HUMANO("Humano"),
     GREE("Gree"),
